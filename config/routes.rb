@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   resources :stocks
   root 'home#index'
+  # root 'stocks#index'
   # devise_scope :user do
   #   root to: "devise/sessions#new"
   # end
