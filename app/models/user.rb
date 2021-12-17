@@ -3,4 +3,15 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  has_many :stocks
+  # after_create :registration_notification
+
+  # def after_confirmation
+  #   UserMailer.success_notification(self).deliver
+  # end
+    
+  # def registration_notification
+  #   UserMailer.success_notification(self).deliver if approved
+  # end
 end

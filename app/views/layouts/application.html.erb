@@ -15,7 +15,10 @@
 
   </head>
   <body>
-  <%= render "devise/sessions/header" %>
-  <%= yield %>
+    <%= render "devise/sessions/header" %>
+      <% if notice %>
+        <%= render 'layouts/alerts' %>
+      <% end %>
+   <%= yield %>
   </body>
 </html>
