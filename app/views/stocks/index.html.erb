@@ -12,6 +12,7 @@
       </thead>
 
       <tbody>
+        <%= current_user.money %>
         <% @stocks.each do |stock| %>
           <% if stock.user == current_user %>
           <tr>
@@ -31,5 +32,5 @@
 
   <%= link_to 'New Stock', new_stock_path %>
 <% else %>
-  <%= redirect_to 'home/index' %>
+
 <% end %>
