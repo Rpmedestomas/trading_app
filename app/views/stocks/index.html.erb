@@ -1,36 +1,45 @@
 <% if user_signed_in? %>
-  <h1>Stocks</h1>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th> User ID</th>
-          <th colspan="2"></th>
-        </tr>
-      </thead>
+<h2>Markets</h2>
+<%= form_with url: search_path do |f|%>
 
-      <tbody>
-        <%= current_user.money %>
-        <% @stocks.each do |stock| %>
-          <% if stock.user == current_user %>
-          <tr>
-            <td><%= link_to stock.name, stock %></td>
-            <td><%= stock.price %></td>
-            <td><%= stock.quantity %></td>
-            <td><%= stock.user_id %></td>
-            <td><%= link_to 'Edit', edit_stock_path(stock) %></td>
-            <td><%= link_to 'Destroy', stock, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          </tr>
-          <% end %>
+    <div id="myDropdown" class="dropdown-content">
+        <%= f.text_field :symbol, placeholder:"Search Stock Name", id:"myInput", onkeyup:"filterFunction()", onfocus: "show()", onfocusout: "show()" %>
+        <ul id="choices" class="overflow-y overflow-x-hidden max-h-96 absolute w-full hidden">
+        
+        <% @all_stocks.each do |stock| %>
+            <li onclick="search(this)"><%= stock.symbol %></li>
         <% end %>
-      </tbody>
-    </table>
+        </ul>   
+        <%= f.submit%>
+    </div>
+    
+<% end %> 
+</div>
 
-  <br>
+<table class="table">
+    <tr>
+        <th colspan="2">Name</th>
+        <th>Price</th>
+        <th>Change</th>
+        <th>Volume</th>
+        <th>Market Cap</th>
+    </tr>
 
-  <%= link_to 'New Stock', new_stock_path %>
-<% else %>
+    
+<%@top_10_stocks.each do |stock|%>
+    <% link_to stock_path(stock.symbol) do %>
+        <tr>
+            <td><%= stock.symbol %></td>
+            <td><%= stock.company_name %></td>
+            <td><%= stock.latest_price %></td>
+            <td><%= stock.change_percent_s %></td>
+            <td><%= stock.avg_total_volume %></td>
+            <td><%= stock.market_cap %></td>
+        </tr>
+    <%end%>
+<%end%>
+
+</table>
+</div>
 
 <% end %>

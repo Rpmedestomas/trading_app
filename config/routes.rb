@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :stocks
   # root 'home#index'
   root 'stocks#index'
+
+  post 'search' => 'stocks#search', as: :search
   
   # devise_scope :user do
   #   root to: "devise/sessions#new"
