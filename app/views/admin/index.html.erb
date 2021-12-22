@@ -1,0 +1,10 @@
+Users:
+<% @users.each do |user|%>
+    <p>
+    Email: <%= user.email %>
+    Full name: <%= user.full_name %> 
+    <%= link_to 'show', admin_path(user) ,class:"text-blue-500" %>
+    <%= link_to 'edit', edit_admin_path(user) ,class:"text-green-500" %>
+    </p>
+
+<%end%>

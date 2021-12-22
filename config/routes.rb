@@ -1,16 +1,23 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  
   devise_for :users
-  resources :users, only: [:index, :show, :edit, :update]
+  # resources :users, only: [:index, :show, :edit, :update]
+
   resources :stocks
-  # root 'home#index'
-  root 'stocks#index'
+  root 'home#index'
+  resources :admin
 
   post 'search' => 'stocks#search', as: :search
   post 'add_stock' => 'stocks#add_stock', as: :add_stock
   post 'sell_stock' => 'stocks#sell_stock', as: :sell_stock
+  post 'create_user' => 'admin#create', as: :create_user
+  
+  get 'home/index'
   get 'buy_stock/:symbol' => 'stocks#buy_stock', as: :buy_stock
   get 'out_stock/:symbol' => 'stocks#out_stock', as: :out_stock
+  get 'approve_user/:id' => 'admin#approve', as: :approve_user
+
+  patch 'admin/:id' => 'admin#update', as: :update_user
   
   # devise_scope :user do
   #   root to: "devise/sessions#new"

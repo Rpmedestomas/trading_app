@@ -3,3 +3,7 @@ admin = User.new(email:"arwiepogi@gmail.com", password:"123456", password_confir
 admin.skip_confirmation!
 admin.save
 
+user = User.new(email:"arwiepogi@gmail.com", password:"123456", password_confirmation:"123456", admin:false, user_status: 'Approved')
+
+user.skip_confirmation!
+user.save
