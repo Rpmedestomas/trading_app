@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   root 'stocks#index'
 
   post 'search' => 'stocks#search', as: :search
+  post 'add_stock' => 'stocks#add_stock', as: :add_stock
+  get 'buy_stock/:symbol' => 'stocks#buy_stock', as: :buy_stock
   
   # devise_scope :user do
   #   root to: "devise/sessions#new"

@@ -19,11 +19,11 @@ class StocksController < ApplicationController
           @stock_search = Stock.iex_api.quote(params[:symbol])
           
           if @stock_search
-            format.html{redirect_to stock_path(params[:symbol])}
-            
+            format.html{redirect_to stock_path(params[:symbol])}       
           end
 
         end
+
       rescue IEX::Errors::SymbolNotFoundError => e
         format.html{redirect_to stocks_path, alert: "No symbol found"}
       end
@@ -47,13 +47,46 @@ class StocksController < ApplicationController
     @action = 'buy'
     
       if shares
-        @shares = shares.shares
+        @shares = shares.quantity
       else
         @shares = 0
-      end
-    
+      end 
   end
 
+  #Get /stocks/buy
+  def add_stock
+    stock = Stock.find_by(user_id:current_user.id, name: params[:symbol])
+    price = Stock.iex_api.price(params[:symbol])
+    
+    respond_to do |format|
+      if stock && current_user.money >= price*params[:quantity].to_i
+        share = stock.quantity
+        current_user.money -= price*params[:quantity].to_i
+        stock.update(quantity: share += params[:quantity].to_i)
+        # save_to_history(params[:symbol],price, params[:quantity], 'buy', current_user.id, stock.id)
+
+      elsif current_user.money >= price*params[:quantity].to_i
+        current_user.money -= price*params[:quantity].to_i
+        new_stock = Stock.new(
+          name: params[:symbol],
+          quantity: params[:quantity].to_i,
+          user_id: current_user.id
+        )
+        new_stock.save
+        # save_to_history(params[:symbol],price, params[:quantity], 'buy', current_user.id, new_stock.id)
+
+      else
+        format.html{redirect_to stock_path(params[:symbol]), alert: "Insufficient funds!"}
+      end
+      current_user.save
+      format.html{redirect_to stock_path(params[:symbol]), notice: "Stock order fulfilled!"}
+    end
+  end
+
+  def buy_stock
+
+  end
+  
   # GET /stocks/new
   def new
     #@stock = Stock.new
@@ -69,7 +102,6 @@ class StocksController < ApplicationController
   def create
     # @stock = Stock.new(stock_params)
     @stock = current_user.stocks.build(stock_params)
-
 
     respond_to do |format|
       if @stock.save
@@ -111,7 +143,6 @@ class StocksController < ApplicationController
 
   def search
     redirect_to stock_path(params[:symbol])
-
   end
 
   private

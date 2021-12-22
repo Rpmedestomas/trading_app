@@ -6,10 +6,6 @@
         <%= f.text_field :symbol, placeholder:"Search Stock Name", id:"myInput", onkeyup:"filterFunction()", onfocus: "show()", onfocusout: "show()" %>
         <ul id="choices" class="overflow-y overflow-x-hidden max-h-96 absolute w-full hidden">
         
-        <% @top_10_stocks.each do |stock| %>
-            <%= link_to stock.symbol, stock_path(stock.symbol) %>
-            <li onclick="search(this)"><%= stock.symbol %></li>
-        <% end %>
         </ul>   
         <%= f.submit%>
     </div>
@@ -19,16 +15,16 @@
 
 <table class="table">
     <tr>
-        <th colspan="2">Name</th>
+        <th>Name</th>
+        <th>Company Name</th>
         <th>Price</th>
         <th>Change</th>
         <th>Volume</th>
         <th>Market Cap</th>
+        <th colspan="2"></th>
     </tr>
 
-    
-<% @top_10_stocks.each do |stock|%>
-    <% link_to stock_path(stock.symbol) do %>
+    <% @top_10_stocks.each do |stock|%>
         <tr>
             <td><%= stock.symbol %></td>
             <td><%= stock.company_name %></td>
@@ -36,9 +32,11 @@
             <td><%= stock.change_percent_s %></td>
             <td><%= stock.avg_total_volume %></td>
             <td><%= stock.market_cap %></td>
-        </tr>
-    <%end%>
-<%end%>
+            <td><%= link_to 'Buy', buy_stock_path(stock.symbol) %></td>
+            <td><%= 'Sell' %></td>
+        </tr>  
+    <%end%> 
+
 
 </table>
 </div>
