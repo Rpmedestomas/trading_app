@@ -4,10 +4,7 @@
 
     <div id="myDropdown" class="dropdown-content">
         <%= f.text_field :symbol, placeholder:"Search Stock Name", id:"myInput", onkeyup:"filterFunction()", onfocus: "show()", onfocusout: "show()" %>
-        <ul id="choices" class="overflow-y overflow-x-hidden max-h-96 absolute w-full hidden">
-        
-        </ul>   
-        <%= f.submit%>
+        <%= f.submit 'Search'%>
     </div>
     
 <% end %> 
@@ -33,7 +30,7 @@
             <td><%= stock.avg_total_volume %></td>
             <td><%= stock.market_cap %></td>
             <td><%= link_to 'Buy', buy_stock_path(stock.symbol) %></td>
-            <td><%= 'Sell' %></td>
+            <td><%= link_to 'Sell', out_stock_path(stock.symbol)%></td>
         </tr>  
     <%end%> 
 

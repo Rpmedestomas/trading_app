@@ -87,6 +87,28 @@ class StocksController < ApplicationController
   def buy_stock
 
   end
+
+  def sell_stock
+    price = Stock.iex_api.price(params[:symbol])
+    respond_to do |format|
+      stock = Stock.find_by(user_id:current_user.id, name: params[:symbol])
+      if stock && stock.quantity >= params[:quantity].to_i
+        share = stock.quantity
+        current_user.money += price*params[:quantity].to_i
+        stock.update(quantity: share -= params[:quantity].to_i)
+        # save_to_history(params[:id],Stock.iex_api.price(params[:id]), params[:quantity], 'sell', current_user.id, stock.id)
+      else
+        format.html{redirect_to stock_path(params[:symbol]),alert:"Insufficient stocks! "}
+
+      end
+      
+      format.html{redirect_to stock_path(params[:symbol]),notice:"Stock successfully sold!"}
+    end
+  end
+
+  def out_stock
+  
+  end
   
   # GET /stocks/new
   def new
