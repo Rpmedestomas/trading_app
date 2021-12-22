@@ -33,10 +33,11 @@ class StocksController < ApplicationController
   # GET /stocks/1 or /stocks/1.json
  
   def show
-    if current_user && current_user.is_approved && user_signed_in?
-      @trading_history = TradingHistory.where(user_id:current_user.id)
+    @stock = params[:id]
+    if current_user && user_signed_in?
+      # @trading_history = TradingHistory.where(user_id:current_user.id)
       shares = Stock.find_by(user_id:current_user.id, name:params[:id])
-      @current_balance = current_user.balance.round(2)
+      # @current_balance = current_user.balance.round(2)
     end
     @latest_price = Stock.iex_api.price(params[:id])
     @company_name = Stock.iex_api.company(params[:id]).company_name
@@ -61,6 +62,7 @@ class StocksController < ApplicationController
 
   # GET /stocks/1/edit
   def edit
+    
   end
 
   # POST /stocks or /stocks.json
@@ -107,10 +109,15 @@ class StocksController < ApplicationController
     redirect_to stocks_path, notice: "Not Authorized to Edit this stock" if @stock.nil?
   end
 
+  def search
+    redirect_to stock_path(params[:symbol])
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_stock
-      @stock = Stock.find(params[:id])
+      # @stock = Stock.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.

@@ -3,11 +3,9 @@ class Stock < ApplicationRecord
 
     def self.iex_api
         IEX::Api::Client.new(
-            publishable_token: 'pk_4a980d42b6a441d4ab95cc2e2f12166a',
-            secret_token: 'sk_024a590056d949b69e0959f7221168d3',
+            publishable_token: 'Tpk_56239b188cb9496582b11d81b697b5dc',
+            secret_token: 'Tsk_4a38760a92b24b4fa29e03c76d920209',
             endpoint: 'https://sandbox.iexapis.com/v1'
         )
     end
-
-
 end

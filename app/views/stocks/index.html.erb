@@ -6,7 +6,8 @@
         <%= f.text_field :symbol, placeholder:"Search Stock Name", id:"myInput", onkeyup:"filterFunction()", onfocus: "show()", onfocusout: "show()" %>
         <ul id="choices" class="overflow-y overflow-x-hidden max-h-96 absolute w-full hidden">
         
-        <% @all_stocks.each do |stock| %>
+        <% @top_10_stocks.each do |stock| %>
+            <%= link_to stock.symbol, stock_path(stock.symbol) %>
             <li onclick="search(this)"><%= stock.symbol %></li>
         <% end %>
         </ul>   
@@ -26,7 +27,7 @@
     </tr>
 
     
-<%@top_10_stocks.each do |stock|%>
+<% @top_10_stocks.each do |stock|%>
     <% link_to stock_path(stock.symbol) do %>
         <tr>
             <td><%= stock.symbol %></td>
