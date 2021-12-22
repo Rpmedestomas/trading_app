@@ -9,6 +9,7 @@ class StocksController < ApplicationController
     # @user_stocks = Stock.all
     @top_10_stocks = Stock.iex_api.stock_market_list(:mostactive)
     @all_stocks = Stock.iex_api.ref_data_symbols()
+    @User = current_user
   end
 
   def search
