@@ -1,13 +1,4 @@
 <h2>Markets</h2>
-<%= form_with url: search_path do |f|%>
-
-    <div id="myDropdown" class="dropdown-content">
-        <%= f.text_field :symbol, placeholder:"Search Stock Name", id:"myInput", onkeyup:"filterFunction()", onfocus: "show()", onfocusout: "show()" %>
-        <%= f.submit 'Search'%>
-    </div>
-    
-<% end %> 
-
 
 <table class="table">
     <tr>

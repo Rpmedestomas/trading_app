@@ -12,7 +12,7 @@ class UserController < ApplicationController
           @stocks = Stock.where(user_id: current_user.id)
       end
 
-    total_balance = current_user.money
+        total_balance = current_user.money
 
       @stocks.each do |stock|
           total_balance += Stock.iex_api.price(stock.name)*stock.quantity

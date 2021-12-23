@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'out_stock/:symbol' => 'stocks#out_stock', as: :out_stock
   get 'approve_user/:id' => 'admin#approve', as: :approve_user
   get 'portfolio' => 'user#portfolio', as: :portfolio
+
   # get 'admin/index' => 'admin#index', as: :admin_index
 
   patch 'admin/:id' => 'admin#update', as: :update_user

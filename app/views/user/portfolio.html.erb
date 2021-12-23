@@ -4,24 +4,8 @@
         <%= stock.name %>
         <%= Stock.iex_api.price(stock.name) * stock.quantity %>
         <%= stock.quantity %>
-        <%= link_to 'Trade', stock_path(stock.name) %> 
+        <%= link_to 'Buy', buy_stock_path(@stocks) %>
+        <%= link_to 'Sell', out_stock_path(@stocks)%>
         <br>
     <% end %>
 </section>
-
-<h3>Search for stocks</h3>
-
-<%= form_with url: portfolio_path ,method: "get" do |f| %>
-        <%= f.label :symbol %>
-        <%= f.text_field :symbol, placeholder:"Search..", id:"myInput", onkeyup:"filterFunction()" %>
-        <ul>
-        <% @stocks.each do |stock| %>
-            <li onclick="search(this)"><%= stock.name %></li>
-        <% end %>
-        </ul>
-
-        <p>
-        <%= f.submit 'Search' %>
-        </p>
-    
-<% end %> 

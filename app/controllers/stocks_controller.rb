@@ -77,7 +77,7 @@ class StocksController < ApplicationController
         # save_to_history(params[:symbol],price, params[:quantity], 'buy', current_user.id, new_stock.id)
 
       else
-        format.html{redirect_to stock_path(params[:symbol]), alert: "Insufficient funds!"}
+        format.html{redirect_to stock_path(params[:symbol]), notice: "Insufficient funds!"}
       end
       current_user.save
       format.html{redirect_to stock_path(params[:symbol]), notice: "Stock order fulfilled!"}
@@ -96,6 +96,7 @@ class StocksController < ApplicationController
         share = stock.quantity
         current_user.money += price*params[:quantity].to_i
         stock.update(quantity: share -= params[:quantity].to_i)
+        current_user.save
         # save_to_history(params[:id],Stock.iex_api.price(params[:id]), params[:quantity], 'sell', current_user.id, stock.id)
       else
         format.html{redirect_to stock_path(params[:symbol]),alert:"Insufficient stocks! "}
