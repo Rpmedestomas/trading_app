@@ -36,7 +36,7 @@ class StocksController < ApplicationController
   def show
     @stock = params[:id]
     if current_user && user_signed_in?
-      # @trading_history = TradingHistory.where(user_id:current_user.id)
+      @trading_history = TradingHistory.where(user_id:current_user.id)
       shares = Stock.find_by(user_id:current_user.id, name:params[:id])
       # @current_balance = current_user.balance.round(2)
     end
