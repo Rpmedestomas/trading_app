@@ -1,9 +1,9 @@
-<h2>Sign up</h2>
+  <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
+  <div class="field max-w-lg mx-auto mt-16 text-center max-w-sm rounded overflow-hidden shadow-lg p-10">
   <%= f.label :full_name %><br />
   <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name" %>
   </div>
