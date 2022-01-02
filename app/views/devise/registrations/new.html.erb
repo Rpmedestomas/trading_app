@@ -1,34 +1,43 @@
-  <h2>Sign up</h2>
+  
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field max-w-lg mx-auto mt-16 text-center max-w-sm rounded overflow-hidden shadow-lg p-10">
-  <%= f.label :full_name %><br />
+  <div class="signUpFullName">
+  <%=f.label :full_name %>
+  </div>
+  <div class="signUpFullNameInput">
   <%= f.text_field :full_name, autofocus: true, autocomplete: "full_name" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
+  <div class="signUpEmail">
+    <%= f.label :email %>
+  </div>
+  <div class="signUpEmailInput">
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
-  <div class="field">
+  <div class="signUpPassword">
     <%= f.label :password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
+  </div>  
+  <div class="signUpPasswordInput">
+    
+    <% end %>
     <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
+  <div class="signUpPasswordConfirmation">
+    <%= f.label :confirm_password %><br />
+  </div>
+  <div class="signUpPasswordConfirmationInput">
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
-  <div class="actions">
+  <div class="signUpSumbit">
     <%= f.submit "Sign up"%>
   </div>
+  
 <% end %>
 
-<%= render "devise/shared/links" %>
+

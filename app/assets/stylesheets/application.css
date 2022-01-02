@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.background {
+    background-image: url(StonksTry.jpg);
+    height: 100vh;
+    width: 100%;
+    background-size: cover;
+}
+
+.wrapper {
+    
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding: 30px;
+}
+
+.Stonks {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    padding-top: 30px;    
+
+}
+
+.signUpFullName {
+    color: purple;
+    display: flex;
+    justify-content: center;
+}
+
+.signUpFullNameInput {
+    display:flex;
+    justify-content: center;
+    
+}
+
+
+.signUpEmail {
+    color: purple;
+    display: flex;
+    justify-content: center;
+}
+
+.signUpEmailInput {
+    display: flex;
+    justify-content: center;
+}
+
+
+.signUpPassword {
+    color:purple;
+    display: flex;
+    justify-content: center;
+}
+
+.signUpPasswordInput {
+    display: flex;
+    justify-content: center;
+}
+
+.signUpPasswordConfirmation {
+    color:purple;
+    display: flex;
+    justify-content: center;
+}
+
+.signUpPasswordConfirmationInput {
+    display: flex;
+    justify-content: center;
+}
+
+.signUpSumbit {
+    padding-top: 50px;
+    display: flex;
+    justify-content: center;
+}

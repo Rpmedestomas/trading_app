@@ -17,10 +17,17 @@
 
   </head>
   <body>
-    <%= render "home/header" %>
+    <div class="background">
+    <div class="Stonks">
+    <%= image_tag("Stonks.png") %>
+    </div>
+    <div class="wrapper">
+    <% render "home/header" %>
       <% if notice %>
         <%= render 'layouts/alerts' %>
       <% end %>
    <%= yield %>
+   </div>
+   </div>
   </body>
 </html>

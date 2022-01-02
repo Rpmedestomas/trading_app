@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_12_24_022307) do
 
   create_table "users", force: :cascade do |t|
     t.string "full_name"
-    t.string "user_status", default: "Pending"
+    t.string "user_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "email", default: "", null: false
