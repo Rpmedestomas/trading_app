@@ -1,11 +1,13 @@
 <section id="shares">
     <%= @total %><br>
     <% @stocks.each do |stock| %>
-        <%= stock.name %>
-        <%= Stock.iex_api.price(stock.name) * stock.quantity %>
-        <%= stock.quantity %>
-        <%= link_to 'Buy', buy_stock_path(@stocks) %>
-        <%= link_to 'Sell', out_stock_path(@stocks)%>
+        <% if stock.quantity > 0 %>
+            <%= stock.name %>
+            <%= Stock.iex_api.price(stock.name) * stock.quantity %>
+            <%= stock.quantity %>
+            <%= link_to 'Buy', buy_stock_path(@stocks) %>
+            <%= link_to 'Sell', out_stock_path(@stocks)%>
+        <% end %>
         <br>
     <% end %>
 </section>
