@@ -1,5 +1,6 @@
 class Stock < ApplicationRecord
     belongs_to :user
+    has_many :trading_history
 
     def self.iex_api
         IEX::Api::Client.new(
