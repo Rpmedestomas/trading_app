@@ -16,8 +16,8 @@ Pending Users:
         <p>
         Email: <%= user.email %>
         Full name: <%= user.full_name %> 
-        <%= link_to 'Approve', approve_status_path, class:"text-blue-500" %>
-        <%= link_to 'Reject', reject_status_path, class:"text-green-500" %>
+        <%= link_to 'Approve', approve_user_path(user) ,class:"text-green-500" %>
+        <%= link_to 'Reject', reject_user_path(user) ,class:"text-green-500" %>
         </p>
     <% end %>
 <%end%>
