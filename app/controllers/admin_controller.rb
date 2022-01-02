@@ -37,6 +37,18 @@ class AdminController < ApplicationController
         end
     end
 
+    def approve_status
+        @user = User.find(params[:id])
+        user.update(user_status: "Approved")
+        user.save
+    end
+
+    def reject_status
+        @user = User.find(params[:id])
+        user.update(user_status: "Rejected")
+        user.save
+    end
+
     private
         def user_params
             params.require(:user).permit(:email, :password, :money, :full_name)

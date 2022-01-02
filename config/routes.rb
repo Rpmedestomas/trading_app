@@ -15,12 +15,14 @@ Rails.application.routes.draw do
   get 'home/index'
   get 'buy_stock/:symbol' => 'stocks#buy_stock', as: :buy_stock
   get 'out_stock/:symbol' => 'stocks#out_stock', as: :out_stock
-  get 'approve_user/:id' => 'admin#approve', as: :approve_user
+  # get 'approve_user/:id' => 'admin#approve', as: :approve_user
   get 'portfolio' => 'user#portfolio', as: :portfolio
 
   # get 'admin/index' => 'admin#index', as: :admin_index
 
   patch 'admin/:id' => 'admin#update', as: :update_user
+  put 'approve_user' => 'admin#approve', as: :approve_status
+  put 'reject_user' => 'admin#reject', as: :reject_status
   
   # devise_scope :user do
   #   root to: "devise/sessions#new"

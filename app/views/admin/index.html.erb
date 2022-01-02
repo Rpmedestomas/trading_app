@@ -1,10 +1,23 @@
-Users:
+Approved Users:
 <% @users.each do |user|%>
-    <p>
-    Email: <%= user.email %>
-    Full name: <%= user.full_name %> 
-    <%= link_to 'show', admin_path(user) ,class:"text-blue-500" %>
-    <%= link_to 'edit', edit_admin_path(user) ,class:"text-green-500" %>
-    </p>
+    <% if user.user_status == 'Approved' %>
+        <p>
+        Email: <%= user.email %>
+        Full name: <%= user.full_name %> 
+        <%= link_to 'Show', admin_path(user) ,class:"text-blue-500" %>
+        <%= link_to 'Edit', edit_admin_path(user) ,class:"text-green-500" %>
+        </p>
+    <% end %>
+<%end%>
 
+Pending Users:
+<% @users.each do |user|%>
+    <% if user.user_status == 'Pending' %>
+        <p>
+        Email: <%= user.email %>
+        Full name: <%= user.full_name %> 
+        <%= link_to 'Approve', approve_status_path, class:"text-blue-500" %>
+        <%= link_to 'Reject', reject_status_path, class:"text-green-500" %>
+        </p>
+    <% end %>
 <%end%>
