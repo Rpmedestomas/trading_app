@@ -45,8 +45,9 @@ class AdminController < ApplicationController
 
     def update
         respond_to do |format|
+            @user = User.find(params[:id])
             if @user.update(user_params)
-              format.html { redirect_to @user, notice: "User profile was successfully updated" }
+              format.html { redirect_to admin_index_path, notice: "User profile was successfully updated" }
             else
               format.html { render :edit, status: :unprocessable_entity }
             end
@@ -100,7 +101,8 @@ class AdminController < ApplicationController
 
     private
         def user_params
-            params.require(:user).permit(:email, :password, :money, :full_name, :user_status)
+            user = User.find(params[:id])
+            params.require(:user).permit(:id, :email, :password, :money, :full_name, :user_status)
         end
 
         def is_user_admin
