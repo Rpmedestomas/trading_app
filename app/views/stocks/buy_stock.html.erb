@@ -1,9 +1,12 @@
 <%= form_with url: add_stock_path  do |f| %>
     <%= params[:symbol] %>
+    </br>
     <%= f.hidden_field :symbol, :value => params[:symbol]%>
+    </br>
     <%=f.label :quantity%>
     <%=f.number_field :quantity %>
+    </br>
     <%= f.submit 'Buy'  %>
-
+    </br>
     <%= link_to 'Back', portfolio_path %>
 <% end %>
