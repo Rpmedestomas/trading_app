@@ -7,6 +7,22 @@ class AdminController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        if params[:symbol] && params[:symbol] != ""
+            @stocks = Stock.where(user_id: @user, name:params[:symbol])
+            if @stocks == []
+                @stocks = Stock.where(user_id: @user)
+            end
+        else 
+            @stocks = Stock.where(user_id: @user)
+        end
+  
+          total_balance = current_user.money
+  
+        @stocks.each do |stock|
+            total_balance += Stock.iex_api.price(stock.name)*stock.quantity
+        end
+  
+        @total = total_balance.round(2)
     end
 
     def new
@@ -46,16 +62,41 @@ class AdminController < ApplicationController
     end
 
     def approve_status
-        @user = User.find(params[:id])
-        user.update_attributes(user_status: "Approved")
+        user = User.find(params[:id])
+        user.update(:user_status => "Approved")
         user.save
+        flash[:notice] = "User status updated."
+        redirect_to admin_index_path
     end
 
     def reject_status
-        @user = User.find(params[:id])
-        user.update_attributes(user_status: "Rejected")
+        user = User.find(params[:id])
+        user.update(:user_status => "Rejected")
         user.save
+        flash[:notice] = "User status updated."
+        redirect_to admin_index_path
     end
+
+    def portfolio 
+         
+        if params[:symbol] && params[:symbol] != ""
+            @stocks = Stock.where(user_id: current_user.id, name:params[:symbol])
+            if @stocks == []
+                @stocks = Stock.where(user_id: current_user.id)
+            end
+        else 
+            @stocks = Stock.where(user_id: current_user.id)
+        end
+  
+          total_balance = current_user.money
+  
+        @stocks.each do |stock|
+            total_balance += Stock.iex_api.price(stock.name)*stock.quantity
+        end
+  
+        @total = total_balance.round(2)
+    end
+  
 
     private
         def user_params

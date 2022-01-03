@@ -1,7 +1,6 @@
 class UserController < ApplicationController
   before_action :is_admin
-  before_action :is_approved
-  
+
   def portfolio 
          
       if params[:symbol] && params[:symbol] != ""
@@ -25,12 +24,6 @@ class UserController < ApplicationController
   private
     def is_admin
         if authenticate_user! && current_user.admin
-            redirect_to root_path
-        end
-    end
-
-    def is_approved
-        if current_user.user_status = 'Pending'
             redirect_to root_path
         end
     end
