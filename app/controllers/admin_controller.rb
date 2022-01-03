@@ -24,7 +24,7 @@ class AdminController < ApplicationController
   
         @total = total_balance.round(2)
     end
-
+    
     def new
         @user = User.new
     end
