@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_action :is_admin
+    before_action :is_admin
 
   def portfolio 
          
@@ -23,7 +23,7 @@ class UserController < ApplicationController
 
   private
     def is_admin
-        if authenticate_user! && current_user.admin
+        if authenticate_user! && current_user.admin && current_user.user_status == 'Approved'
             redirect_to root_path
         end
     end

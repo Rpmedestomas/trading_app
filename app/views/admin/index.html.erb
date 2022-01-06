@@ -1,36 +1,64 @@
-Approved Users:
-<% @users.each do |user|%>
-    <% if user.user_status == 'Approved' %>
-        <p>
-        Email: <%= user.email %>
-        Full name: <%= user.full_name %> 
-        <%= link_to 'Show', admin_path(user) ,class:"text-blue-500" %>
-        <%= link_to 'Edit', edit_admin_path(user) ,class:"text-green-500" %>
-        </p>
-    <% end %>
-<%end%>
-<br/>
+<h2>Approved Users:</h2>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Full Name</th>
+        <th>Email</th>
+        <th colspan="2"></th>
+    </tr>
 
-Pending Users:
-<% @users.each do |user|%>
-    <% if user.user_status == 'Pending' %>
-        <p>
-        Email: <%= user.email %>
-        Full name: <%= user.full_name %> 
-        <%= link_to 'Approve', approve_status_path(user) ,class:"text-green-500" %>
-        <%= link_to 'Reject', reject_status_path(user) ,class:"text-green-500" %>
-        </p>
-    <% end %>
-<%end%>
-<br/>
+    <% @users.each do |user|%>
+        <% if user.user_status == 'Approved' %>
+            <tr>
+                <td><%= user.full_name %></td>
+                <td><%= user.email %></td>
+                <td class="d-inline justify-content-lg-center"><%= link_to 'Show', admin_path(user), class: "btn btn-outline-dark btn-sm" %></td>
+                <td class="d-inline justify-content-lg-center"><%= link_to 'Edit', edit_admin_path(user), class: "btn btn-outline-dark btn-sm"%></td>
+            </tr>    
+        <%end%>
+    <%end%>
+</table>
 
-Rejected Users:
-<% @users.each do |user|%>
-    <% if user.user_status == 'Rejected' %>
-        <p>
-        Email: <%= user.email %>
-        Full name: <%= user.full_name %> 
-        <%= link_to 'Approve', approve_status_path(user) ,class:"text-green-500" %>
-        </p>
-    <% end %>
-<%end%>
+</br>
+</br>
+
+<h2>Pending Users:</h2>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Full Name</th>
+        <th>Email</th>
+        <th colspan="2"></th>
+    </tr>
+
+    <% @users.each do |user|%>
+        <% if user.user_status == 'Pending' %>
+            <tr>
+                <td><%= user.full_name %></td>
+                <td><%= user.email %></td>
+                <td class="d-inline justify-content-lg-center"><%= link_to 'Approve', approve_status_path(user), class: "btn btn-outline-dark btn-sm" %></td>
+                <td class="d-inline justify-content-lg-center"><%= link_to 'Reject', reject_status_path(user), class: "btn btn-outline-dark btn-sm"%></td>
+            </tr>    
+        <%end%>
+    <%end%>
+</table>
+
+</br>
+</br>
+
+<h2>Rejected Users:</h2>
+<table class="table table-hover table-striped table-bordered table-sm">
+    <tr class="table-dark">
+        <th>Full Name</th>
+        <th>Email</th>
+        <th colspan="1"></th>
+    </tr>
+
+    <% @users.each do |user|%>
+        <% if user.user_status == 'Rejected' %>
+            <tr>
+                <td><%= user.full_name %></td>
+                <td><%= user.email %></td>
+                <td class="d-inline justify-content-lg-center"><%= link_to 'Approve', approve_status_path(user), class: "btn btn-outline-dark btn-sm" %></td>
+            </tr>    
+        <%end%>
+    <%end%>
+</table>

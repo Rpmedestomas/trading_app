@@ -101,7 +101,6 @@ class AdminController < ApplicationController
 
     private
         def user_params
-            user = User.find(params[:id])
             params.require(:user).permit(:id, :email, :password, :money, :full_name, :user_status)
         end
 

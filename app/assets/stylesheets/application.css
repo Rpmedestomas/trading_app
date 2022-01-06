@@ -1,1 +1,14 @@
+.background{
+    background-image: url(StonksTry.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh
+}
 
+#inner_bg{
+    margin-left: 35vw;
+    background-color: #FFFFFF;
+    height: 60vh;
+    width: 30vw;
+    opacity: 80%;
+}

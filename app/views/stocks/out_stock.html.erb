@@ -1,7 +1,10 @@
 <%= form_with url: sell_stock_path  do |f| %>
     <%= params[:symbol] %>
+    </br>
     <%= f.hidden_field :symbol, :value => params[:symbol]%>
+    </br>
     <%=f.label :quantity%>
     <%=f.number_field :quantity %>
+    </br>
     <%= f.submit 'Sell'  %>
 <% end %>

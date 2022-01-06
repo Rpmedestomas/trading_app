@@ -1,9 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <% if current_user.present? && current_user.admin? %>
       <%= link_to 'Stonks!', admin_index_path, class:"navbar-brand" %>
       <% else %>
-      <%= link_to 'Stonks!', root_path, class:"navbar-brand" %>
+      <%= link_to image_tag("Stonks.png", :alt => "rss feed"), root_path, class:"navbar-brand" %>
     <% end %>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
               <%= link_to 'Edit', edit_user_registration_path, class:'nav-link'%>
             </li>
             <li class="nav-item">
-              <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'nav-link'%>
+              <%= button_to 'Sign out', destroy_user_session_path, method: :delete, class:'btn btn-light'%>
             </li>
           <% end %>
         <% else %>
@@ -47,9 +47,7 @@
       <%= form_with url: portfolio_path, method: "get" do |f| %>
   
             <%= f.text_field :symbol, placeholder:"Search..", id:"myInput", onkeyup:"filterFunction()" %>
-
             <%= f.submit 'Search' %>
-    
       <% end %> 
 
     </div>
