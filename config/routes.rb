@@ -21,9 +21,9 @@ Rails.application.routes.draw do
   # get '/users/sign_out' => 'user#sign_out', as: :sign_out
   
   get 'approve_user/:id' => 'admin#approve_user', as: :approve_user
-  get'approve_status/:id' => 'admin#approve_status', as: :approve_status
+  get 'approve_status/:id' => 'admin#approve_status', as: :approve_status
   get 'reject_user/:id' => 'admin#reject_user', as: :reject_user
-  get'reject_status/:id' => 'admin#reject_status', as: :reject_status
+  get 'reject_status/:id' => 'admin#reject_status', as: :reject_status
   # get 'admin/index' => 'admin#index', as: :admin_index
 
   patch 'admin/:id/edit' => 'admin#update', as: :update_user

@@ -1,20 +1,20 @@
-<div class="container h-2/4 flex justify-center items-center ">
-<h5><%= @user.full_name %></h1>
-<h5><%= @user.email %></h1>
+<div class="container-lg h-2/4 w-2/4 flex justify-center items-center ">
+    <h5><%= @user.full_name %></h1>
+    <h5><%= @user.email %></h1>
 
-<section id="shares">
-    <%= @total %><br>
-    <% @stocks.each do |stock| %>
-        <% if stock.quantity > 0 %>
-            <%= stock.name %>
-            <%= Stock.iex_api.price(stock.name) * stock.quantity %>
-            <%= stock.quantity %>
+    <section id="shares">
+        <%= @total %><br>
+        <% @stocks.each do |stock| %>
+            <% if stock.quantity > 0 %>
+                <%= stock.name %>
+                <%= Stock.iex_api.price(stock.name) * stock.quantity %>
+                <%= stock.quantity %>
+            <% end %>
+            <br>
         <% end %>
-        <br>
-    <% end %>
-</section>
+    </section>
 
-<%= link_to 'Edit details', edit_admin_path(@user) %>
-<%= link_to 'Back', admin_index_path %>
+    <%= link_to 'Edit details', edit_admin_path(@user) %>
+    <%= link_to 'Back', admin_index_path %>
 
 </div>
