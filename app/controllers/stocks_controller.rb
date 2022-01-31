@@ -89,6 +89,7 @@ class StocksController < ApplicationController
   end
 
   def sell_stock
+    stock = Stock.find_by(user_id:current_user.id, name: params[:symbol])
     price = Stock.iex_api.price(params[:symbol])
     respond_to do |format|
       stock = Stock.find_by(user_id:current_user.id, name: params[:symbol])

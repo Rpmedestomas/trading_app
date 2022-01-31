@@ -1,25 +1,75 @@
-# README
+# Stonks | Trading App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+    Ruby Version ruby-2.7.4
 
-Things you may want to cover:
+## Installation
 
-* Ruby version
+```
+git clone https://github.com/Rpmedestomas/trading_app.git
+```
 
-* System dependencies
+```
+cd trading_app
+```
 
-* Configuration
+```
+For Windows:
 
-* Database creation
+    sudo service postgresql start
+```
 
-* Database initialization
+```
+For Mac:
 
-* How to run the test suite
+    brew services start postgresql
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+bundle install
+```
 
-* Deployment instructions
+```
+rails db:migrate
+```
 
-* ...
-# trading_app
+```
+rails db:seed
+```
+
+```
+For Windows:
+
+    Open database.yml
+    Uncomment username and password
+```
+
+```
+For Mac:
+
+    Open database.yml
+    Comment username and password
+```
+
+```
+rails s
+```
+
+## Demo
+
+<br/>
+
+## Sample Credentials
+
+    Admin
+
+        email: arwiepogi@gmail.com
+
+        password: 123456
+
+## Features
+
+-   User is able to create new account
+-   User can edit account information
+-   User can view the top 10 most active stocks
+-   User can search for a specific stock
+-   User can buy/sell stock
