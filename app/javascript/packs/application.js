@@ -6,7 +6,7 @@
 import Rails from '@rails/ujs';
 import Turbolinks from 'turbolinks';
 import * as ActiveStorage from '@rails/activestorage';
-import '../application.css';
+import '../assets/stylesheets/application.css';
 import 'channels';
 import 'stylesheets/application';
 
