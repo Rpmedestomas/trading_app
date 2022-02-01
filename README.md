@@ -62,7 +62,13 @@ rails s
 
     Admin
 
-        email: arwiepogi@gmail.com
+        email: admin@example.com
+
+        password: 123456
+
+    User
+
+        email: user@example.com
 
         password: 123456
 
